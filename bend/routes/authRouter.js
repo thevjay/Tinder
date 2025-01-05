@@ -13,7 +13,7 @@ route.post("/signup",async(req,res)=>{
         //validation of data
         validateSignUpData(req);
 
-        const {firstName,lastName,emailId,password}=req.body;
+        const { firstName, lastName, emailId, password } = req.body;
 
         //Encrypt the password
         const passwordHashed = await bcrypt.hash(password,10)
@@ -48,23 +48,21 @@ route.post("/signup",async(req,res)=>{
 })
 
 
-route.post('/login',async(req,res)=>{
+route.post('/login', async (req, res) => {
     try{
-        const {emailId,password}=req.body;
-
+        const { emailId, password } = req.body;
+        console.log(emailId)
         //validation on email id
 
         //check email is present into db or not
-        const user=await User.findOne({emailId:emailId});
+        const user = await User.findOne({ emailId: emailId });
         if(!user){
-            res.status(404).send("Invalid credentials")
+           return res.status(404).send("Invalid credentials")
         }
 
 
         //bcrypt have compare method like it takes bcrypt.compare(req.body.password,hash)
         const isPasswordValid = await user.validatePassword(password );
-
-    
         if(!isPasswordValid){
 
             //JWT Token - takes HEADER AND PAYLOAD AND VERIFY SIGNATURE(data it is have key value pair of data) to create the token 
@@ -73,18 +71,20 @@ route.post('/login',async(req,res)=>{
             
             
             //Add the token to cookie and send the response back to the user
-            res.cookie("token",token,{httpOnly:true ,expires :new Date(Date.now() + 8 * 3600000)});
+            res.cookie("token", token, { httpOnly: true , expires: new Date(Date.now() + 8 * 3600000)});
             res.status(200).json({
                 success : true,
                 message : "Login Successfully",
                 user,
             })
-        }else{
-            throw new Error("Invalid credentials")
         }
     }
     catch(error){
-        res.status(500).send("ERROR :" + error.message)
+        console.error(error)
+        res.status(500).json({
+            success:false,
+            message:"Internal server error"
+        })
     }
 })
 

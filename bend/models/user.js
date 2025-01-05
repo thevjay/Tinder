@@ -20,7 +20,7 @@ const userSchema= new mongoose.Schema({
         unique:true,//if we add unique is true it is autometically creates index:true
         trim:true,
         validate(value){
-            if(validator.isEmail(value)){
+            if(!validator.isEmail(value)){
                 throw new Error("Invalid email address" + value)
             }
         }
@@ -29,7 +29,7 @@ const userSchema= new mongoose.Schema({
         type:String,
         required:true,
         validate(value){
-            if(validator.isStrongPassword(value)){
+            if(!validator.isStrongPassword(value)){
                 throw new Error("Invalid password value" + value)
             }
         }
@@ -52,10 +52,10 @@ const userSchema= new mongoose.Schema({
     },
     photoUrl:{
         type:String,
-        default:'www.google.com',
+        default:'https://geographyandyou.com/images/user-profile.png',
         validate(value){
-            if(validator.isURL(value)){
-                throw new Error("It is not valid String")
+            if(!validator.isURL(value)){
+                throw new Error("It is not valid String" + value)
             }
         }
     },
@@ -72,13 +72,13 @@ const userSchema= new mongoose.Schema({
 //compound index
 //User.find({firstName:"Saini",lastName:"ninne"})
 
-userSchema.index({firstName:1,lastName:1});
-userSchema.index({gender:1});
+// userSchema.index({firstName:1,lastName:1});
+// userSchema.index({gender:1});
                       
 userSchema.methods.getJWT=async function(){
     const user=this;
 
-    const token = await jwt.sign({_id: user._id },"fsd",{expiresIn:'1h'})
+    const token = await jwt.sign({_id: user._id },"fsd",{expiresIn:'7h'})
 
     return token;
 }

@@ -1,6 +1,7 @@
 const express=require('express')
 const connectDB=require('./config/database');
 const app=express();
+const cors = require('cors')
 const cookieParser=require('cookie-parser')
 
 const authRouter=require('./routes/authRouter')
@@ -17,24 +18,35 @@ const userRoute=require('./routes/userRouter')
 //(use) method means- if i pass in a function over here what will happend
 //this function req.handler will on run every request 
 
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+}))
+
 app.use(express.json());
 app.use(cookieParser());
+//app.use(cors)
 
+app.use('/',authRouter)
+app.use('/',profileRouter)
+app.use('/',request)
+app.use('/',userRoute)
 
-app.use('/auth',authRouter)
-app.use('/profile',profileRouter)
-app.use('/requests',request)
-app.use('/user',userRoute)
-
-
+app.get('/',(req,res)=>{
+    console.log("Hello world!!")
+    res.send("Hello World!!!")
+})
 
 connectDB()
     .then(()=>{
         console.log("Database connection established...")
-        app.listen(7777,()=>{
-            console.log('Server is successfully listening on port 7777...')
-        })
+        
     })
     .catch((error)=>{
         console.log("Database cannot be connected!!")
     })
+
+app.listen(5000,()=>{
+    console.log('Server is successfully listening on port 5000')
+})
+

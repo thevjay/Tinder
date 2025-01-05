@@ -1,14 +1,33 @@
 import React, { useState } from 'react'
 import  axios  from 'axios';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../../utils/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../utils/constants';
 
 const Login = () => {
 
-  const [emailId,setEmailId] = useState("");
-  const [password,setPassword] = useState("");
+  const [emailId,setEmailId] = useState("abc@gmail.com");
+  const [password,setPassword] = useState("12345");
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   
   const handleLogin = async() =>{
+    try{
 
-    axios.post()
+    const res = await axios.post( BASE_URL + "/login" , {
+        emailId,
+        password,
+        },
+          { withCredentials: true}
+      )
+
+      console.log(res.data.user)
+      dispatch(addUser(res.data.user));
+      navigate('/')
+    }catch(error){
+      console.error(error)
+    }
   }
 
   return (
@@ -43,7 +62,7 @@ const Login = () => {
             </label>
           </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button onClick={handleLogin} className="btn btn-primary">Login</button>
           </div>
         </div>
       </div>
@@ -52,3 +71,7 @@ const Login = () => {
 }
 
 export default Login
+
+
+
+//32
