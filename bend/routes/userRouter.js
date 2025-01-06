@@ -15,15 +15,17 @@ route.get('/user/requests/received', userAuth, async (req, res) => {
         const connectionRequests = await ConnectionRequest.find({
             toUserId:loggedInUser._id,
             status:"interested",
-        }).populate("fromUserId",["firstName","lastName"])  //populate means 
+        })
+        .populate("fromUserId", USER_SAFE_DATA);
+        //.populate("fromUserId",["firstName","lastName"])  //populate means 
                                                             //[filter]
 
         res.json({
             message:"Data fetched successfully",
-            data:connectionRequests
+            data : connectionRequests
         })
     }catch(error){
-
+        req.statusCode(400).send("ERROR: " + error.message);
     }
 })
 
