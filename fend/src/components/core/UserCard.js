@@ -1,8 +1,8 @@
 import React from 'react'
 
-const UserCard = ({user}) => {
+const UserCard = ({ user }) => {
 
-    const { firstName, lastName, photoUrl, age,about,gender} = user;
+    const { firstName, lastName, photoUrl, age,about,gender } = user;
 
     console.log(user)
   return (
@@ -10,7 +10,7 @@ const UserCard = ({user}) => {
         <div className="card bg-base-300 w-96 shadow-xl">
             <figure>
                 <img
-                src={user.photoUrl}
+                src={photoUrl}
                 alt="Shoes" />
             </figure>
             <div className="card-body">

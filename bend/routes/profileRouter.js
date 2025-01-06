@@ -14,14 +14,11 @@ route.get('/profile/view',userAuth,async(req,res)=>{
         // if(!token){
         //     throw new Error("Invalid Token")
         // }
-
         // //validation my token
         // //verify(token,secret key)
         // const decodedMessage=await jwt.verify(token,"kjbfkjdbkjds")  
 
         // const { _id }=decodedMessage;
-
-    
 
         // const user=await User.findById(_id)
 
@@ -34,17 +31,17 @@ route.get('/profile/view',userAuth,async(req,res)=>{
     }
 })
 
-route.patch('/profile/edit',userAuth,async(req,res)=>{
+route.put('/profile/edit',userAuth,async(req,res)=>{
     try{
         
         if(!validateEditProfileData(req)){
             throw new Error("Invalid Edit Request")
         }
 
-        const loggedInUser=req.user;
+        const loggedInUser = req.user;
 
-        Object.keys(req.body).forEach((key)=>(
-            loggedInUser[key]=req.body[key]
+        Object.keys(req.body).forEach((key) => (
+            loggedInUser[key] = req.body[key]
         ))
 
         //console.log(loggedInUser)

@@ -18,10 +18,14 @@ const userRoute=require('./routes/userRouter')
 //(use) method means- if i pass in a function over here what will happend
 //this function req.handler will on run every request 
 
-app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-}))
+// CORS configuration
+const corsOptions = {
+    origin: "http://localhost:3000", // Allow requests from this origin
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());

@@ -28,6 +28,8 @@
 - -- If taken is not present, redirect user to login page
 - -- LogOut feature
 - -- Profile
+- -- Get the feed and add the feed in the store
+- -- build the user card on feed
 
 
 

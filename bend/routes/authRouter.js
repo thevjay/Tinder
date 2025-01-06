@@ -24,7 +24,7 @@ route.post("/signup",async(req,res)=>{
             firstName,
             lastName,
             emailId,
-            password:passwordHashed,
+            password: passwordHashed,
         });
         
         
@@ -67,7 +67,6 @@ route.post('/login', async (req, res) => {
         if(isPasswordValid){
 
             //JWT Token - takes HEADER AND PAYLOAD AND VERIFY SIGNATURE(data it is have key value pair of data) to create the token 
-
             const token=await user.getJWT();
             
             
