@@ -35,6 +35,12 @@
 - -- Show Toast Message on save of profile
 - New Page - See all my connections
 - New Page - See all my Connection Requests
+- Feature -Accept/Reject Connection Request
+
+Remainig:
+- send/ignore the user card from Feed
+- Signu New user
+- E2E Testing
 
 
 - Body 
