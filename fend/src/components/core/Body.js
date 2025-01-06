@@ -23,7 +23,7 @@ const Body = () => {
       },
       })
 
-      console.log(res.data)
+      //console.log(res.data)
       dispatch(addUser(res.data))
     }
     catch(error){

@@ -67,15 +67,14 @@ route.get("/feed",userAuth,async(req,res)=>{
         // 2 . ignored people
         // 3 . already sent the connection request
 
-        const loggedInUser=req.user;
+        const loggedInUser = req.user;
 
         // =====> /feed?page=1&limit=10
 
-        const page= parseInt(req.query.page) || 1;
-        let limit=parseInt(req.query.limit) || 10;
+        const page = parseInt(req.query.page) || 1;
+        let limit  = parseInt(req.query.limit) || 10;
         limit = limit > 50 ? 50 : limit;
-
-        const skip=(page-1)*limit;
+        const skip = (page-1) * limit;
 
         //Find all connection requests (sent + received)
         const connectionRequests = await ConnectionRequest.find({
@@ -83,7 +82,7 @@ route.get("/feed",userAuth,async(req,res)=>{
                 {fromUserId:loggedInUser._id},
                 {toUserId:loggedInUser._id}
             ]
-        }).select("fromUserId , toUserId")
+        }).select("fromUserId  toUserId")
 
 
         const hideUsersFromFeed = new Set();
@@ -92,22 +91,23 @@ route.get("/feed",userAuth,async(req,res)=>{
             hideUsersFromFeed.add(req.toUserId.toString());
         })
 
-        console.log(hideUsersFromFeed);
-
+        //console.log(hideUsersFromFeed);
         const users = await User.find({
             $and:[
-                {_id:{ $nin : Array.from(hideUsersFromFeed)}},
-                { _id: { $ne : loggedInUser._id}},
+                { _id: { $nin : Array.from(hideUsersFromFeed)}},
+                { _id: { $ne : loggedInUser._id }},
             ],
         })
-            .select(USER_SAFE_DATA).skip(skip).limit(limit)
+            .select(USER_SAFE_DATA)
+            .skip(skip)
+            .limit(limit)
         
         res.json({
             data:users
         })
     }
     catch(error){
-
+        res.status(400).json({ message: err.message });
     }
 })
 

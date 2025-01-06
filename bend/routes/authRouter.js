@@ -52,7 +52,7 @@ route.post("/signup",async(req,res)=>{
 route.post('/login', async (req, res) => {
     try{
         const { emailId, password } = req.body;
-        console.log(emailId)
+        //console.log(emailId)
         //validation on email id
 
         //check email is present into db or not

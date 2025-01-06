@@ -32,10 +32,7 @@ app.use('/',profileRouter)
 app.use('/',request)
 app.use('/',userRoute)
 
-app.get('/',(req,res)=>{
-    console.log("Hello world!!")
-    res.send("Hello World!!!")
-})
+
 
 connectDB()
     .then(()=>{
