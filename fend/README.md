@@ -26,8 +26,8 @@
 - -- Refactor our code to add constants file + create a components folder
 - -- You should not be access other routes without login
 - -- If taken is not present, redirect user to login page
-- -- LogOut
-- --Profile
+- -- LogOut feature
+- -- Profile
 
 
 
