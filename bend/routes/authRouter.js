@@ -33,6 +33,7 @@ route.post("/signup",async(req,res)=>{
 
        res.cookie("token", token,{
         expires: new Date(Date.now() + 8 * 3600000),
+        secure: "fsd"
        })
 
        res.status(200).json({
@@ -62,8 +63,8 @@ route.post('/login', async (req, res) => {
 
 
         //bcrypt have compare method like it takes bcrypt.compare(req.body.password,hash)
-        const isPasswordValid = await user.validatePassword(password );
-        if(!isPasswordValid){
+        const isPasswordValid = await user.validatePassword(password);
+        if(isPasswordValid){
 
             //JWT Token - takes HEADER AND PAYLOAD AND VERIFY SIGNATURE(data it is have key value pair of data) to create the token 
 
@@ -71,12 +72,15 @@ route.post('/login', async (req, res) => {
             
             
             //Add the token to cookie and send the response back to the user
-            res.cookie("token", token, { httpOnly: true , expires: new Date(Date.now() + 8 * 3600000)});
+            res.cookie("token", token, { httpOnly:true,expires: new Date(Date.now() + 8 * 3600000)});
             res.status(200).json({
                 success : true,
                 message : "Login Successfully",
-                user,
+                user
             })
+            
+        }else{
+            throw new Error("Invalid creadentials")
         }
     }
     catch(error){
@@ -176,7 +180,7 @@ route.post("/logout",userAuth,async(req,res)=>{
         res.send("Logout Successfully!! ")
     }
     catch(error){
-
+        console.error(error)
     }
 })
 
