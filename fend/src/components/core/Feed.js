@@ -8,14 +8,14 @@ import UserCard from './UserCard'
 const Feed = () => {
 
   const dispatch = useDispatch();
-  const feed = useSelector((store) => store.feed )
+  const feed = useSelector((store) => store.feed)
 
 
   const getFeed = async() => {
     if(feed) return;
     try{
       const res = await axios.get(BASE_URL+'/feed',{withCredentials:true})
-      //console.log(res.data)
+      console.log(res.data)
       dispatch(addFeed(res.data))
     }catch(error){
       console.error(error)
@@ -26,11 +26,15 @@ const Feed = () => {
     getFeed()
   },[])
 
+  if(!feed) return;
+
+  if( feed.length < 0 ) return <h1>No New users founds!</h1>
+
   return (
-    <div className='flex justify-center my-10'>
-      { feed && <UserCard user={feed[0]} />} 
-      
-    </div>
+      feed && (
+      <div className='flex justify-center my-10'>
+        <UserCard user={ feed[0] } />
+      </div>)
   )
 }
 

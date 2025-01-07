@@ -11,12 +11,10 @@ route.post('/request/send/:status/:toUserId',userAuth,async(req,res)=>{
         const toUserId=req.params.toUserId;
         const status=req.params.status;
 
-        const allowedStatus=["ignored","interested"]
+        const allowedStatus = ["ignored","interested"]
         if(!allowedStatus.includes(status)){
-            return res.json({message:"Invalid status type :",status})
+            return res.json({message:"Invalid status type :" + status})
         }
-
-        
 
         const toUser= await User.findById(toUserId);
         if(!toUser){
@@ -30,13 +28,12 @@ route.post('/request/send/:status/:toUserId',userAuth,async(req,res)=>{
         //if there is an existing ConnectionRequest
         const existingConnectionRequest=await ConnectionRequest.findOne({
             $or:[
-                {fromUserId,toUserId},
-                {fromUserId:toUserId,toUserId:fromUserId},
+                { fromUserId, toUserId},
+                { fromUserId: toUserId, toUserId: fromUserId },
             ],
         })
 
-
-        if(!existingConnectionRequest){
+        if(existingConnectionRequest){
             return res.status(400).send({
                 message:"Connection Request Already Exists!!"
             })
@@ -48,18 +45,16 @@ route.post('/request/send/:status/:toUserId',userAuth,async(req,res)=>{
             status,
         })
 
-        const data=await connectionRequest.save();
-
+        const data = await connectionRequest.save();
 
         //sending a connection request
-
         res.json({
-            message: req.user.firstName + "is" + status + "in" +toUser.firstName,
+            message: req.user.firstName + "is" + status + "in" + toUser.firstName,
             data,
         })
     }
     catch(error){
-        res.send("Error in :" + error)
+        res.status(400).send("Error in :" + error.message)
     }
 })
 

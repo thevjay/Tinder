@@ -18,7 +18,8 @@ const EditProfile = ({ user }) => {
       const dispatch = useDispatch();
 
       const [showToast, setShowToast] = useState(false)
-    
+
+      
       const savedProfile = async() => {
         setError("")
         try{
@@ -106,7 +107,11 @@ const EditProfile = ({ user }) => {
               <div className="label">
                 <span className="label-text">Gender:</span>
               </div>
-              <select value={gender} onChange={(e)=> setGender(e.target.value)} className="select select-bordered w-full max-w-xs">
+              <select 
+                value={gender} 
+                onChange={(e)=> {setGender(e.target.value)}} 
+                className="select select-bordered w-full max-w-xs"
+              >
                 <option disabled selected>Who shot first?</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>

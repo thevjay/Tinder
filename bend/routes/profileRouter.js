@@ -31,7 +31,8 @@ route.get('/profile/view',userAuth,async(req,res)=>{
     }
 })
 
-route.put('/profile/edit',userAuth,async(req,res)=>{
+route.put('/profile/edit', userAuth, async ( req, res ) => {
+    
     try{
         
         if(!validateEditProfileData(req)){

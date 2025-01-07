@@ -7,13 +7,13 @@ import { addRequests, removeRequest } from '../../utils/requestSlice';
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
   const dispatch = useDispatch()
-
+ console.log(requests)
   //const [showButtons, setShowButtons] = useState(true);
 
   const reviewRequest = async (status,_id) => {
     try{
 
-      const res = axios.post(BASE_URL + "/request/review" + status + "/" + _id,
+      const res = axios.post(BASE_URL + "/request/review/" + status + "/" + _id,
         {},
         { withCredentials: true }
       );
@@ -48,7 +48,7 @@ const Requests = () => {
       <h1 className='text-3xl font-bold'>Requests</h1>
 
       { requests.map((request) => {
-        const { _id, firstName, lastName, photoUrl, age, gender, about } = request.fromUser;
+        const { _id, firstName, lastName, photoUrl, age, gender, about } = request.fromUserId;
 
         return (
             <div key={ _id } className='flex justify-between items-center  m-4 p-4 rounded-lg bg-base-200 w-2/3 mx-auto'>
