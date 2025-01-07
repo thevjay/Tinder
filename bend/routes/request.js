@@ -89,7 +89,8 @@ route.post('/request/review/:status/:requestId',userAuth,async(req,res)=>{
         const data=await connectionRequest.save()
 
         res.json({
-            message:"Connection request" + status,data
+            message:"Connection request" + status,
+            data
         })
 
         // Akshy => Elon
@@ -99,7 +100,7 @@ route.post('/request/review/:status/:requestId',userAuth,async(req,res)=>{
 
     }
     catch(error){
-
+        res.status(400).send("ERROR: " + err.message);
     }
 })
 
