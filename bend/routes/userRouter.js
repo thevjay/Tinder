@@ -103,7 +103,7 @@ route.get("/feed",userAuth,async(req,res)=>{
             .limit(limit)
         
         res.json({
-            data:users
+            data : users
         })
     }
     catch(error){

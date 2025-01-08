@@ -6,6 +6,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
     "daisyui": "^4.12.23",
+    "dotenv": "^16.4.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.2.0",

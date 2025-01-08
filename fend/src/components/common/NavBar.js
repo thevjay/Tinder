@@ -2,7 +2,6 @@ import axios from 'axios'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { BASE_URL } from '../../utils/constants' 
 import { removeUser } from '../../utils/userSlice'
 
 const NavBar = () => {
@@ -14,7 +13,7 @@ const NavBar = () => {
 
   const handleLogout = async() => {
     try{
-       await axios.post(BASE_URL +"/logout",{},{ withCredentials: true })
+       await axios.post( process.env.REACT_APP_API_URL+"/logout",{},{ withCredentials: true })
        dispatch(removeUser())
        return navigate('/login')
     }
@@ -30,6 +29,14 @@ const NavBar = () => {
   <div className="flex-1">
     <Link to={'/'} className="btn btn-ghost text-xl">👨‍💻 DevTinder</Link>
   </div>
+
+  { !user && (
+  <div>
+      <button className='px-4 py-3 bg-gray-900'>
+        <Link to={'/login'}>Login</Link>
+      </button>
+  </div>)
+  }
   { user && (<div className="flex-none gap-2">
     {/* <div className="form-control">
       <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
@@ -49,7 +56,7 @@ const NavBar = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        className="menu menu-sm dropdown-content bg-gray-900 rounded-box z-[1] mt-3 w-52 p-2 shadow">
         <li>
           <Link to={'/profile'} className="justify-between">
             Profile
