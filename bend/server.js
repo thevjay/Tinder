@@ -20,7 +20,7 @@ const userRoute=require('./routes/userRouter')
 
 // CORS configuration
 const corsOptions = {
-    origin: "http://localhost:3000", // Allow requests from this origin
+    origin: process.env.FRONTEND_URL, // Allow requests from this origin
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
