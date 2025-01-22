@@ -24,11 +24,15 @@ const corsOptions = {
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
-// Use CORS middleware
-app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
+// Use CORS middleware
+app.use(cors({
+    origin:"*",
+    credentials:true,
+}));
+
 //app.use(cors)
 
 app.use('/',authRouter)
