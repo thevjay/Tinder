@@ -144,5 +144,3 @@ const EditProfile = ({ user }) => {
 }
 
 export default EditProfile
-
-//16

@@ -325,3 +325,32 @@ Use PATCH for incremental updates where you only need to change specific fields.
 
 
 
+# AWS
+## Deployment
+
+- sign up on AWS
+- Launch instance
+- chmod 400 <secret>.pem
+- ssh commad
+- connected to commad
+
+- - Install Node Version 16.7.0
+- - Git clone
+  - Frontend
+  - npm install -> dependencies install
+  - npm run build
+  - sudo apt update
+  - sudo apt install nginx
+  - sudo systemctl start nginx
+  - sudo systemctl enable nginx
+  - copy code from dist(build files) to /var/www/html/
+  - sudo scp -r dist/* /var/www/html/
+  - Enable port 80 your instance 
+- 
+- Backend
+- - update the mongodb password
+- - allowed ec2 instance public IP on mongodb server
+- - installed npm install pm2 -g
+- - pm2  start npm -- start
+- - pm2 log
+- - pm2 list, pm2 flush <name>, pm2 stop <name>, pm2 delete <name>

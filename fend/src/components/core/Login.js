@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import  axios  from 'axios';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../utils/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast'
+
 
 const Login = () => {
 
@@ -18,24 +20,24 @@ const Login = () => {
   const navigate = useNavigate()
 
     const handleLogin = async() =>{
-    try{
-
-    const res = await axios.post( process.env.REACT_APP_API_URL + "/login" , {
-        emailId,
-        password,
-        },
+      try{
+        const res = await axios.post( process.env.REACT_APP_API_URL + "/login" , 
+          { emailId,password },
           { withCredentials: true}
-      )
+        )
 
-      //console.log(res.data.user)
-      dispatch(addUser(res.data.user));
-      navigate('/')
-    }catch(error){
-      setError(error?.response?.data)
-      //console.log(error.response.data)
-      console.error(error)
+        //console.log(res.data.user)
+        dispatch(addUser(res.data.user));
+        navigate('/')
+      }catch(error){
+        setError(error?.response?.data)
+        //console.log(error.response.data)
+        console.error(error)
+        return toast.error(
+          error?.response?.data || 'Login failed, please try again.'
+        )
+      }
     }
-  }
 
   const handleSignup = async() => {
     try{
@@ -49,6 +51,9 @@ const Login = () => {
     }catch(error){
       setError(error?.response?.data)
       console.error(error)
+      return toast.error(
+        error?.response?.data || 'Sign Up failed, please try again.'
+    );
     }
   }
 
@@ -106,13 +111,18 @@ const Login = () => {
                 type="password" 
                 value={password}
                 placeholder="Enter Password" 
-                className="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs pr-10"
                 onChange={(e)=> setPassword(e.target.value)} 
               />
+              { isLoginForm ?
+                <div className="text-end">
+                  <Link to={``} className='label-text'>Forgot Password</Link>
+                </div> : null}
+
             </label>
           </div>
           <p className='text-red-600'>{error}</p>
-          <div className="card-actions justify-center">
+          <div className="card-actions justify-center text-center mt-2">
             <button 
               onClick={ isLoginForm ? handleLogin : handleSignup } 
               className="btn btn-primary"
@@ -122,7 +132,7 @@ const Login = () => {
           </div>
 
           <p 
-            className='m-aut0 cursor-pointer py-2'
+            className='m-auto py-2 hover:text-primary '
             onClick={() => setIsLoginForm((value)=> !value)}
           >
             { isLoginForm ? "New User? SignUp Here" : "Existing User? Login Here"}
