@@ -5,6 +5,7 @@ import { addFeed } from '../../utils/feedSlice'
 import UserCard from './UserCard'
 import Skeleton from '../common/Skeleton'
 import { Link } from 'react-router-dom'
+import { Base_URL } from '../../utils/constants'
 
 const Feed = () => {
 
@@ -16,7 +17,7 @@ const Feed = () => {
   const getFeed = async() => {
     
     try{
-      const res = await axios.get(process.env.REACT_APP_API_URL+'/feed',{
+      const res = await axios.get(Base_URL+'/feed',{
         withCredentials:true
       })
 

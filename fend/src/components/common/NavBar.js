@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { removeUser } from '../../utils/userSlice'
 import toast from 'react-hot-toast'
 import ThemeToggle from './ThemeToggle'
+import { Base_URL } from '../../utils/constants'
 
 const NavBar = () => {
 
@@ -25,7 +26,7 @@ const NavBar = () => {
 
   const handleLogout = async() => {
     try{
-       await axios.post( process.env.REACT_APP_API_URL+"/logout",{},{ withCredentials: true })
+       await axios.post( Base_URL+"/logout",{},{ withCredentials: true })
        dispatch(removeUser())
        navigate('/')
        return toast.success("Logged Out")

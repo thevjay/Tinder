@@ -28,10 +28,7 @@ const corsOptions = {
 app.use(express.json());
 app.use(cookieParser());
 // Use CORS middleware
-app.use(cors({
-    origin:"*",
-    credentials:true,
-}));
+app.use(cors(corsOptions));
 
 //app.use(cors)
 
@@ -41,7 +38,7 @@ app.use('/',request)
 app.use('/',userRoute)
 app.use('/',paymentRouter)
 
-
+const PORT = process.env.PORT 
 
 connectDB()
     .then(()=>{
@@ -52,7 +49,7 @@ connectDB()
         console.log("Database cannot be connected!!")
     })
 
-app.listen(5000,()=>{
+app.listen(PORT,()=>{
     console.log('Server is successfully listening on port 5000')
 })
 

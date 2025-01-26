@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { removeUserFromFeed } from '../../utils/feedSlice';
 import toast from 'react-hot-toast'
+import { Base_URL } from '../../utils/constants';
 
 const UserCard = ({ user }) => {
     
@@ -19,7 +20,7 @@ const UserCard = ({ user }) => {
     const handleSendRequest = async (status,userId) => {
         try{
             const res = await axios.post(
-                process.env.REACT_APP_API_URL + '/request/send/' + status + "/" + userId,
+                Base_URL + '/request/send/' + status + "/" + userId,
                 {},
                 { withCredentials: true }
             );

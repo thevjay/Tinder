@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addUser } from '../../utils/userSlice';
 import { Link,useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast'
+import { Base_URL } from '../../utils/constants';
 
 
 const Login = () => {
@@ -21,7 +22,7 @@ const Login = () => {
 
     const handleLogin = async() =>{
       try{
-        const res = await axios.post( process.env.REACT_APP_API_URL + "/login" , 
+        const res = await axios.post( Base_URL + "/login" , 
           { emailId,password },
           { withCredentials: true}
         )
@@ -41,7 +42,7 @@ const Login = () => {
 
   const handleSignup = async() => {
     try{
-      const res = await  axios.post(process.env.REACT_APP_API_URL + "/signup",
+      const res = await  axios.post(Base_URL + "/signup",
         { firstName, lastName, emailId, password},
         { withCredentials: true }
       )

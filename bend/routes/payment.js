@@ -5,7 +5,7 @@ const razorpayInstance = require('../utils/razorpay')
 const Payment = require('../models/payment')
 const {membershipAmount}=require('../utils/constants')
 const {validateWebhookSignature} = require('razorpay/dist/utils/razorpay-utils');
-const user = require('../models/user');
+const User = require('../models/user');
 
 
 paymentRouter.post('/payment/create',userAuth,async(req,res)=>{
@@ -67,12 +67,13 @@ paymentRouter.post('/payment/webhook',async(req,res)=>{
         // Update my payment status in DB
         const paymentDetails =  req.body.payload.payment.entity;
 
+        console.log("paymentDetails",paymentDetails)
 
         const payment = await Payment.findOne({ orderId: paymentDetails.order._id})
         payment.status = paymentDetails.status;
         await payment.save();
 
-        const user = await user.findOne({_id:payment.userId})
+        const user = await User.findOne({_id:payment.userId})
         user.isPremium = true;
         user.membershipType = payment.notes.membershipType;
 

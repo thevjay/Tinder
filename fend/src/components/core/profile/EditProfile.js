@@ -3,6 +3,7 @@ import UserCard from '../UserCard'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../../../utils/userSlice'
+import { Base_URL } from '../../../utils/constants'
 
 const EditProfile = ({ user }) => {
 
@@ -22,7 +23,7 @@ const EditProfile = ({ user }) => {
       const savedProfile = async() => {
         setError("")
         try{
-            const res = await axios.put( process.env.REACT_APP_API_URL + "/profile/edit",
+            const res = await axios.put( Base_URL + "/profile/edit",
                 { 
                     firstName,
                     lastName,

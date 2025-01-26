@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addRequests, removeRequest } from '../../utils/requestSlice';
 import { Link } from 'react-router-dom'
+import { Base_URL } from '../../utils/constants';
 
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
@@ -17,7 +18,7 @@ const Requests = () => {
   const reviewRequest = async (status,_id) => {
     try{
 
-      const res = axios.post(process.env.REACT_APP_API_URL + "/request/review/" + status + "/" + _id,
+      const res = axios.post(Base_URL + "/request/review/" + status + "/" + _id,
         {},
         { withCredentials: true }
       );
@@ -29,7 +30,7 @@ const Requests = () => {
 
   const fetchRequests = async() => {
     try{
-      const res = await axios.get(process.env.REACT_APP_API_URL + '/user/requests/received',
+      const res = await axios.get(Base_URL + '/user/requests/received',
         {withCredentials: true}
       )
       dispatch(addRequests(res.data.data))

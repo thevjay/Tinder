@@ -8,6 +8,7 @@ import { addUser } from '../../utils/userSlice'
 import Comments from '../common/Comments';
 import FeedBackCard from '../common/FeedBackCard';
 import toast from 'react-hot-toast'
+import { Base_URL } from '../../utils/constants';
 
 
 const Body = () => {
@@ -21,7 +22,7 @@ const Body = () => {
     if(userData) return;
 
     try{
-      const res = await axios.get( process.env.REACT_APP_API_URL + "/profile/view",{
+      const res = await axios.get( Base_URL + "/profile/view",{
         withCredentials:true
       })
 
@@ -42,7 +43,7 @@ const Body = () => {
 
   useEffect(()=>{
     // Only call the API if userData is not present
-    if (!userData){
+    if (userData){
       fetchUser()
     }
   },[userData])
