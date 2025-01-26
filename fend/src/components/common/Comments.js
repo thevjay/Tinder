@@ -19,12 +19,12 @@ const Comments = () => {
 
   return (
     <div className='flex justify-evenly'>
-            {COMMENTS?.slice(currentIndex, currentIndex + 3).map((data) => (
-                <div className="card border-[0.5px] w-96 ">
+            {COMMENTS?.slice(currentIndex, currentIndex + 3).map((data,index) => (
+                <div className="card border-[0.5px] w-96 " key={`${data.fullName}-${index}`}>
                     <div className="card-body">
                         <>
-                            <div className='flex justify-between text-2xl'>
-                                <h2 className="card-title text-white">{data?.fullName}</h2>
+                            <div className='flex justify-between text-2xl' >
+                                <h2 className="card-title text-white" key={index}>{data?.fullName}</h2>
                                 <div className='flex'>
                                     <SiComma className="font-extrabold" />
                                     <SiComma className="font-extrabold" />

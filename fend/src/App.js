@@ -12,6 +12,7 @@ import Connections from './components/core/Connections';
 import Requests from './components/core/Requests';
 import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer';
+import Premium from './components/core/Premium';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
               <Route path='/profile' element={<Profile/>}/>
               <Route path='/connections' element={<Connections/>}/>
               <Route path='/requests' element={<Requests/>}/>
+              <Route path='/premium' element={<Premium/>}/>
             </Route>
           </Routes>
           <Footer/>

@@ -8,7 +8,7 @@ const authRouter=require('./routes/authRouter')
 const profileRouter=require('./routes/profileRouter')
 const request=require('./routes/request')
 const userRoute=require('./routes/userRouter')
-
+const paymentRouter = require('./routes/payment')
 //EP-8
 //middlewares
 //the req.body is sent over the json data format  but the server not able to READ the JSON data;
@@ -39,6 +39,7 @@ app.use('/',authRouter)
 app.use('/',profileRouter)
 app.use('/',request)
 app.use('/',userRoute)
+app.use('/',paymentRouter)
 
 
 

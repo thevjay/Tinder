@@ -27,7 +27,13 @@ const UserCard = ({ user }) => {
         }catch(error){
             //console.error(error)
             setError(error.response.data.message)
-            toast(error.response.data.message+"😁", { duration: 2000, position: 'bottom-left' })
+            console.log(error)
+            if(error.response.data.message === undefined){
+                toast(error.response.data +"😁", { duration: 2000, position: 'bottom-left' })
+            }else{
+                toast(error.response.data.message+"😁", { duration: 2000, position: 'bottom-left' })
+            }
+            
         }
     };
 

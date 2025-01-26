@@ -354,3 +354,33 @@ Use PATCH for incremental updates where you only need to change specific fields.
 - - pm2  start npm -- start
 - - pm2 log
 - - pm2 list, pm2 flush <name>, pm2 stop <name>, pm2 delete <name>
+
+
+
+
+
+# Sending Emails via SES
+- Creat a IAM user
+- Give Access to AmazonSESAccess
+- Amazon SES: Create an Identity
+- Verify your domain name
+- Verify an email address identity
+- Install AWS SDK -V3
+- code Example
+- Setup SesClient
+- Access Credentials should be created in IAM under Security credentials tab
+- Add the creadentials to the env file
+- write code for SESClient
+- write code for Sending email address
+- Make the email dynamic by passing more params to the run function
+
+# Razorpay Payment Gateway Integration
+- Sign up on Razorpay & complete KYC
+- created a UI for premium page
+- Creating an API for create order in backend
+- added my key and secret in env file
+- Intialized Razorpay in utils
+- creating order on Razorpay
+- create schema and model
+- saved the order in payments collection
+- make the API dynamic
