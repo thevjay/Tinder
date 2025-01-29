@@ -331,12 +331,55 @@ Use PATCH for incremental updates where you only need to change specific fields.
 - sign up on AWS
 - Launch instance
 - chmod 400 <secret>.pem
-- ssh commad
+- ssh commad ssh -i "devTinder-secret.pem" ubuntu@ec2-43-204-96-49.ap-south-1.compute.amazonaws.com
+- install Node version 16.17.0
 - connected to commad
 
-- - Install Node Version 16.7.0
-- - Git clone
-  - Frontend
+- - Install nvm Node Version 16.7.0
+- - node -v
+- - Git clone https clone link copy frontend
+- - Git clone https clone link copy backend
+- ls show folder
+
+# how to run the production
+- - once again ssh run
+- - cd to go frontend project
+- - cd devTinder-web/
+- - npm install after
+- - npm run build
+- - ls
+  - - shows folder we can see the dist folder or build folder
+  - - we using nginx to host our frontend project
+  ## install the nginx
+    - - first  install the system dependence ## sudo apt update 
+    - - it will update the ubuntu versions
+    - - sudo apt install nginx
+    - - starting the nginx command
+    - - sudo systemctl start nginx
+    - - sudo systemctl enable nginx
+- - after  the commands code in dist folder is containe build files to nginx http server to /var/www/html/
+- - for the check the file is existing or not 
+- - cd /var/www/html/
+- - ls
+- - cd 
+- - cd devTinder-web/
+  - -   `    `      ` :sudo scp -r dist/* /var/www/html/ enter
+  - - ls
+- - in the instance have public address in aws
+- - Enable port 80 of your instance
+    - - to go the security settings
+    - - we found the security group
+    - - click
+    - - we found a in the security Inbound rules
+    - - we add the ruls
+    - - Edit inbound rules
+    - - add a rule button
+    - - type Custome TCP   range  0.0.0.0 save the rules
+- - to use the address to run browser is live the server 
+
+
+
+## Frontend
   - npm install -> dependencies install
   - npm run build
   - sudo apt update
@@ -346,16 +389,15 @@ Use PATCH for incremental updates where you only need to change specific fields.
   - copy code from dist(build files) to /var/www/html/
   - sudo scp -r dist/* /var/www/html/
   - Enable port 80 your instance 
-- 
-- Backend
+
+
+## Backend
 - - update the mongodb password
 - - allowed ec2 instance public IP on mongodb server
 - - installed npm install pm2 -g
 - - pm2  start npm -- start
 - - pm2 log
 - - pm2 list, pm2 flush <name>, pm2 stop <name>, pm2 delete <name>
-
-
 
 
 
