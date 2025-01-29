@@ -377,6 +377,69 @@ Use PATCH for incremental updates where you only need to change specific fields.
     - - type Custome TCP   range  0.0.0.0 save the rules
 - - to use the address to run browser is live the server 
 
+  ## backend
+  - - first we go to cd devTinder backend
+  - - allowed ec2 instance public Ip on mongodb server
+  - - npm install 
+  - - npm 
+      "start": "node server.js",  --> Production level command 
+    "dev":"nodemon server.js"     --> development level command
+  - - we using npm run start
+  - - successfull
+  - - but it is not work 
+  - - Edit inbound rules
+  - - custom TCP  port range 7777 allow in 0.0.0.0
+  - - after the run server it will run live
+  - - then we refresh the server it won't work error
+  - - behend the server run the npm start for ever to install the pm2
+  - - install the pm2
+  - - npm install pm2 -g
+  - - via start pm2 to start
+  - - command pm2 start npm --start
+  - - pm2 start npm -- start is imp
+  - - if any errors we see the below command enter
+  - - pm2 logs
+  - - suppose we clear the error
+  - - pm2 flush npm
+  - - pm2 list
+  - - name of processer to change the name
+  - - pm2 stop npm
+  - - pm2 delete npm
+  - - we can give custom name
+  - - pm2 start npm --name "devTinder-backend -- start
+  - - 
+  ## connecr the frontend and backend
+  - - Frontend = http://43.204.96.49/
+  - - Backend = http://43.204.96.49:7777/
+
+  - - map the domain name = devtinder.com => 43.204.96.49
+  - - DNS mapping
+
+  - - Frontend = devtinder.com
+  - - Backend = devtinder.com:7777 => devtinder.com/api
+  - - 
+# Nginx config:
+  - - how to edit or access the nginx config file
+  - - sudo nano /etc/nginx/
+  - - sudo nano /ect/nginx/sites-available/default enter
+  - - it will take the config file to the edit
+  - - in the config file in side server object 
+  - - - we have a [server_name 43.204.96.49]
+  - - below the rules
+  - - - nginx config
+  - - - to add the -> 
+        location /api/ {
+        proxy_pass http://localhost:7777/; # Pass the request to the Node.js app
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+  - - save and exit the config
+  - - re start the nginx
+  - - - sudo systemctl restart nginx
+
+  - - Modify the BASEURL in frontend project to "/api"
 
 
 ## Frontend
