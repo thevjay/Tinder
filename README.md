@@ -441,6 +441,14 @@ Use PATCH for incremental updates where you only need to change specific fields.
 
   - - Modify the BASEURL in frontend project to "/api"
 
+- - long back 
+- - in frontend project like devTinder-web and update the local vs code to github
+- - devTinder$ -> git pull
+- - refresh the serevr is  not work
+- - again we do npm run build
+- - 
+
+- - sudo scp -r dist/* /var/www/html
 
 ## Frontend
   - npm install -> dependencies install
