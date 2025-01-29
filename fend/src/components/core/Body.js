@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
-import NavBar from '../common/NavBar';
 import { Outlet, useNavigate } from 'react-router-dom';
-import Footer from '../common/Footer';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../../utils/userSlice'
@@ -76,7 +74,7 @@ const Body = () => {
                                 <span className='font-semibold text-lg bg-gradient bg-clip-text text-transparent'> - DevTinder</span>
                             </p>
                             <button className='my-3 border rounded-xl bg-custom-gradient text-lg text-white transform transition duration-300 hover:scale-105 shadow-xl md:py-2 md:px-5 sm:p-2 sm:px-4 p-2 px-3' onClick={handleClickOnCreateBtn}>
-                                Create an Account
+                               { userData ? "Expore More": "Create an Account"}
                             </button>
                         </div>
 
