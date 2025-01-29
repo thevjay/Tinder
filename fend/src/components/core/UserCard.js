@@ -15,7 +15,6 @@ const UserCard = ({ user }) => {
 
     const { _id ,firstName, lastName, photoUrl, age, about, gender,skills } = user;
 
-    const [error, setError] = useState('')
     
     const handleSendRequest = async (status,userId) => {
         try{
@@ -27,7 +26,6 @@ const UserCard = ({ user }) => {
             dispatch(removeUserFromFeed(userId))
         }catch(error){
             //console.error(error)
-            setError(error.response.data.message)
             console.log(error)
             if(error.response.data.message === undefined){
                 toast(error.response.data +"😁", { duration: 2000, position: 'bottom-left' })
