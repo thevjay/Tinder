@@ -408,7 +408,7 @@ Use PATCH for incremental updates where you only need to change specific fields.
   - - we can give custom name
   - - pm2 start npm --name "devTinder-backend -- start
   - - 
-  ## connecr the frontend and backend
+  ## connect the frontend and backend
   - - Frontend = http://43.204.96.49/
   - - Backend = http://43.204.96.49:7777/
 
@@ -449,6 +449,33 @@ Use PATCH for incremental updates where you only need to change specific fields.
 - - 
 
 - - sudo scp -r dist/* /var/www/html
+
+
+# Adding a Custom Domain Name
+- GoDaddy Domain  name server
+- - go to the GoDaddy purchased the domain name devtinder.in
+# # CLOUDFLARE
+- - login / signup  and add a new domain name
+- - change the nameservers on godaddy and point it to cloudflare
+- - wait for sometime till your nameservers are updated
+- - DNS record: A devtinder.in 43.204.96.49
+- - Enable SSL  for server
+
+
+- - and dashborad and add a domain name button
+- - quick scan for DNS records
+- - select 0 free plan
+- - set up
+- - configure for 
+
+
+
+
+# Real Time Chart using Websocket(Socket.io)
+- Build the UI for a chat window on /chat/:targetUserId
+- Setup socket.io in backend
+- npm i socket.io
+
 
 ## Frontend
   - npm install -> dependencies install

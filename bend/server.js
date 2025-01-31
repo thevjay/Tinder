@@ -3,12 +3,15 @@ const connectDB=require('./config/database');
 const app=express();
 const cors = require('cors')
 const cookieParser=require('cookie-parser')
+const http = require('http');
+
 
 const authRouter=require('./routes/authRouter')
 const profileRouter=require('./routes/profileRouter')
 const request=require('./routes/request')
 const userRoute=require('./routes/userRouter')
-const paymentRouter = require('./routes/payment')
+const paymentRouter = require('./routes/payment');
+const initializeSocket = require('./utils/socket');
 //EP-8
 //middlewares
 //the req.body is sent over the json data format  but the server not able to READ the JSON data;
@@ -38,18 +41,21 @@ app.use('/',request)
 app.use('/',userRoute)
 app.use('/',paymentRouter)
 
-const PORT = process.env.PORT 
+const server = http.createServer(app);
+initializeSocket(server);
 
+
+const PORT = process.env.PORT || 7777;
 connectDB()
     .then(()=>{
         console.log("Database connection established...")
-        
+        server.listen(PORT,()=>{
+            console.log('Server is successfully listening on port 5000')
+        });
     })
     .catch((error)=>{
         console.log("Database cannot be connected!!")
     })
 
-app.listen(PORT,()=>{
-    console.log('Server is successfully listening on port 5000')
-})
+
 

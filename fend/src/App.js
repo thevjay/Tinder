@@ -14,6 +14,8 @@ import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer';
 import Premium from './components/core/Premium';
 
+import Chat from './components/core/Chat';
+
 
 function App() {
   
@@ -31,6 +33,7 @@ function App() {
               <Route path='/connections' element={<Connections/>}/>
               <Route path='/requests' element={<Requests/>}/>
               <Route path='/premium' element={<Premium/>}/>
+              <Route path='/chart/:targetUserId' element={<Chat/>} />
             </Route>
           </Routes>
           <Footer/>
