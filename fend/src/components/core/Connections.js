@@ -58,14 +58,18 @@ const Connections = () => {
                      const { firstName, lastName, age, gender,about, skills, photoUrl } = connection;
                      //console.log(connection)
                     return(
-                        <div key={connection._id} className="flex justify-between shadow-mg m-4 border border-gray-400 p-4 rounded-xl w-1/2 bg-slate-50">
-                            <img className='w-20 rounded ' src={ photoUrl } alt="" />
-                             <div>
-                                <h3 className="font-bold text-xl">{capitalizeFirstLetter(firstName)} {capitalizeFirstLetter(lastName)}</h3>
+                        <div key={connection._id} className="flex justify-between shadow-mg m-4 border border-gray-400 p-4 rounded-xl w-1/2 space-x-4">
+                            {/* Profile Image */}
+                            <img className='w-20 h-20 object-cover rounded' src={ photoUrl } alt="User" />
+                            {/* User Info */}
+                             <div className='flex-1'>
+                                <h3 className="font-bold text-xl text-gray-600">{capitalizeFirstLetter(firstName)} {capitalizeFirstLetter(lastName)}</h3>
                                 <div className="text-md mt-1 ">{age},{gender}</div>
                                 {/* <div className="text-md mt-1 ">About: {about}</div> */}
                                 <div className="text-md mt-1 ">Skill: {about}</div>
                             </div>
+
+                            {/* Chat Button */}
                             <Link to={'/chart/' + connection._id}>
                                 <button className="btn btn-sm">Chat</button>
                             </Link>

@@ -55,15 +55,16 @@ const Body = () => {
         <div className='m-10 sm:m-3'>
         <div
                     className="hero h-screen bg-gradient-to-b from-neutral-950 to-transparent fixed top-0 left-0 w-full -z-10"
-                    style={{
-                        backgroundImage: "url(https://cdn.pixabay.com/photo/2024/05/20/13/28/ai-generated-8775233_1280.png)",
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
+                    // style={{
+                    //     backgroundImage: "url(https://cdn.pixabay.com/photo/2024/05/20/13/28/ai-generated-8775233_1280.png)",
+                    //     backgroundSize: 'cover',
+                    //     backgroundPosition: 'center',
+                    // }}
                 >
                     <div className="relative z-10"></div>
                 </div>
-                <div className=' '>
+                {!userData &&
+                  (<div className=' '>
                     <div className="h-screen flex justify-center items-center text-neutral-content text-center">
                         <div className='bg-black bg-opacity-70 py-8 rounded'>
                             <h1 className="text-2xl font-extrabold text-white  md:text-6xl h-[77px] ">
@@ -74,15 +75,13 @@ const Body = () => {
                                 <span className='font-semibold text-lg bg-gradient bg-clip-text text-transparent'> - DevTinder</span>
                             </p>
                             <button className='my-3 border rounded-xl bg-custom-gradient text-lg text-white transform transition duration-300 hover:scale-105 shadow-xl md:py-2 md:px-5 sm:p-2 sm:px-4 p-2 px-3' onClick={handleClickOnCreateBtn}>
-                               { userData ? "Expore More": "Create an Account"}
+                              { userData ? "Expore More": "Create an Account"}
                             </button>
                         </div>
-
                     </div>
                 </div>
-
+            )}
         </div>
-
 
         <div className='bg-neutral-950  py-8 z-50'>
                 {/* <FeedBack userData={userData} BUTTON_IMAGE={BUTTON_IMAGE} /> */}
@@ -91,13 +90,14 @@ const Body = () => {
                     <FeedBackCard />
                 </div>
                 <div className='text-center'>
-                    <button className='my-6 border-spacing-44 py-3 px-5 rounded-xl bg-custom-gradient text-xl text-white transform transition duration-300 hover:scale-105 shadow-xl' onClick={() => toast("Please Login!😁", { duration: 2000, position: 'bottom-left' })}>
-                        Explore More
+                    <button 
+                      className='my-6 border-spacing-44 py-3 px-5 rounded-xl bg-custom-gradient text-xl text-white transform transition duration-300 hover:scale-105 shadow-xl' 
+                      onClick={() => toast("Please Login!😁", { duration: 2000, position: 'bottom-left' })}
+                    >
+                      Explore More
                     </button>
                 </div>
-
-                
-            </div>
+        </div>
       </div>
       
      

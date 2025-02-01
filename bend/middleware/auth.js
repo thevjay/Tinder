@@ -11,7 +11,7 @@ const userAuth=async(req,res,next)=>{
             return res.status(401).send("Please Login!")
         }
 
-        const decodedObj=await jwt.verify(token,"fsd")
+        const decodedObj = await jwt.verify(token,"fsd")
         //validate the token
 
         const { _id } = decodedObj;

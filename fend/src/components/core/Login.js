@@ -146,6 +146,3 @@ const Login = () => {
 
 export default Login
 
-
-
-//32

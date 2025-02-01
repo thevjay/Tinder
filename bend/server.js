@@ -12,6 +12,7 @@ const request=require('./routes/request')
 const userRoute=require('./routes/userRouter')
 const paymentRouter = require('./routes/payment');
 const initializeSocket = require('./utils/socket');
+const chatRoute = require('./routes/chatRoute');
 //EP-8
 //middlewares
 //the req.body is sent over the json data format  but the server not able to READ the JSON data;
@@ -40,17 +41,18 @@ app.use('/',profileRouter)
 app.use('/',request)
 app.use('/',userRoute)
 app.use('/',paymentRouter)
+app.use('/',chatRoute)
 
 const server = http.createServer(app);
 initializeSocket(server);
 
 
-const PORT = process.env.PORT || 7777;
+const PORT = process.env.PORT || 5000;
 connectDB()
     .then(()=>{
         console.log("Database connection established...")
         server.listen(PORT,()=>{
-            console.log('Server is successfully listening on port 5000')
+            console.log(`Server is successfully listening on port ${PORT}`)
         });
     })
     .catch((error)=>{

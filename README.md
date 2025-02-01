@@ -476,6 +476,24 @@ Use PATCH for incremental updates where you only need to change specific fields.
 - Setup socket.io in backend
 - npm i socket.io
 
+- FRONTEND SOCKET SET UP
+- npm i socket.io-client
+- Initialise the chat
+- createSocketConnection
+- Listen to events
+- HomeWork: improve the UI
+- HomeWork: Fix Security Bug - Can i send messages to a person who is not my friend?
+- auth in web sockets
+- Honework: fix bug - if i'm not friend, then i should not be able to send message
+
+- Homework: feat: Show Green Symbol when online??? - [last Seen 2 hours ago]
+- Homework: Limit messages when fetching from DB Pagination
+- Project Ideas : Tic tac too game
+- Project Ideas : Chess
+- 
+
+
+
 
 ## Frontend
   - npm install -> dependencies install

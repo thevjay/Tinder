@@ -59,20 +59,15 @@ const Feed = () => {
   return (
     <div className='flex justify-center items-center mt-14'>
       {
-        loading ?
+        loading ? (
           <Skeleton/>
-        :
-        <>
-          <div className='w-9/12 h-screen'>
-            {feed &&
-              <div className='flex my-14 gap-6 '>
-                <div className='w-[36%]'>
-                  <UserCard user={feed[0]} />
-                </div>
-              </div>
-            }
+        ) : (
+          <div className='w-full h-screen flex justify-center'>
+            <div className='max-w-md w-full'>
+              {feed && feed.length > 0 && <UserCard user={feed[0]}/>}
+            </div>
           </div>
-        </>
+        )
       }
     </div>
   )
