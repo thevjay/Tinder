@@ -493,7 +493,21 @@ Use PATCH for incremental updates where you only need to change specific fields.
 - 
 
 
+# After the socket the Production 
+- cd devTinder backend code
+- git pull
+- pm2 list
+- npm i
+- pm2 list
+- pm2 restart 0
+- pm2 flushed
+- pm2 logs
 
+- cd devTinder-web frontend
+- git pull 
+- npm i
+- npm run build
+- sudo scp -r dist/* /var/www/html commad want  reverse search  clt+r
 
 ## Frontend
   - npm install -> dependencies install
