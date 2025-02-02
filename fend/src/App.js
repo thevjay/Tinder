@@ -20,7 +20,7 @@ import Chat from './components/core/Chat';
 function App() {
   
   return (
-    <div>
+    <>
       <Provider store={appStore}>
         <Toaster position='bottom-left' reverseOrder={false}/>
         <BrowserRouter basename='/'>
@@ -29,17 +29,20 @@ function App() {
             <Route path='/' element={<Body />}>
               <Route path='/' element={<Feed/>}/>
               <Route path='/login' element={<Login/>}/>
+
+
               <Route path='/profile' element={<Profile/>}/>
               <Route path='/connections' element={<Connections/>}/>
               <Route path='/requests' element={<Requests/>}/>
               <Route path='/premium' element={<Premium/>}/>
               <Route path='/chart/:targetUserId' element={<Chat/>} />
+              {/* <Route path='/error' element={<Error/>}/> */}
             </Route>
+            
           </Routes>
-          <Footer/>
         </BrowserRouter>
       </Provider>
-    </div>
+    </>
   )
 }
 

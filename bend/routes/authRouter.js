@@ -32,18 +32,21 @@ route.post("/signup",async(req,res)=>{
        const token = await savedUser.getJWT();
 
        res.cookie("token", token,{
-        expires: new Date(Date.now() + 8 * 3600000),
+        expires: new Date(Date.now() + 1 * 3600000),
         secure: "fsd"
        })
 
        res.status(200).json({
             success : true,
-            message : "User Added Successfully",
+            message : "User created Successfully",
             data : savedUser
        })
     }
     catch(error){
-        res.status(500).send("Error :" + error.message);
+        console.error(error)
+        res.status(500).json({
+            message: "failed to create user" + error.message,
+        });
     }
     
 })
@@ -52,8 +55,7 @@ route.post("/signup",async(req,res)=>{
 route.post('/login', async (req, res) => {
     try{
         const { emailId, password } = req.body;
-        console.log(emailId)
-        console.log(password)
+
         //validation on email id
 
         //check email is present into db or not
@@ -183,6 +185,8 @@ route.post("/logout",userAuth,async(req,res)=>{
         console.error(error)
     }
 })
+
+route
 
 
 module.exports=route;
